@@ -3,23 +3,24 @@
 namespace App\Commands;
 
 use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Support\Facades\Http;
 use LaravelZero\Framework\Commands\Command;
 
-class InspiringCommand extends Command
+class FetchPage extends Command
 {
     /**
      * The signature of the command.
      *
      * @var string
      */
-    protected $signature = 'inspiring {name=Artisan}';
+    protected $signature = 'app:fetch {uri=google.de}';
 
     /**
      * The description of the command.
      *
      * @var string
      */
-    protected $description = 'Display an inspiring quote';
+    protected $description = '';
 
     /**
      * Execute the console command.
@@ -28,7 +29,11 @@ class InspiringCommand extends Command
      */
     public function handle()
     {
-        $this->info('Simplicity is the ultimate sophistication.');
+        $html = Http::get($this->argument('uri'));
+
+        file_put_contents('downloaded.html', $html);
+
+        return 0;
     }
 
     /**
