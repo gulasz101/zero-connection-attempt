@@ -53,7 +53,7 @@ class ConnectAndDump extends Command
         } finally {
             $connectionAttempt->time_execution_finished = Carbon::now();
             $connectionAttempt->time_diff = $timeStart
-                ->longRelativeToNowDiffForHumans(
+                ->diffInMicroseconds(
                     $connectionAttempt->time_execution_finished
                 );
             $connectionAttempt->save();
