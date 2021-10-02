@@ -4,6 +4,7 @@ namespace App\Commands;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use LaravelZero\Framework\Commands\Command;
 
@@ -32,7 +33,7 @@ class BackupDB extends Command
     {
         Storage::disk('s3')->put(
             Carbon::now()->format(\DateTimeInterface::ATOM) . '.sqlite',
-            fopen(database_path('database.sqlite'), 'r'),
+            File::get(database_path('database.sqlite')),
         );
 
         return Command::SUCCESS;

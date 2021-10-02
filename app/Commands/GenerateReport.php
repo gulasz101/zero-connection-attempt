@@ -7,6 +7,7 @@ use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
 use Box\Spout\Writer\Common\Creator\WriterFactory;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use LaravelZero\Framework\Commands\Command;
 
@@ -67,7 +68,7 @@ class GenerateReport extends Command
         Storage::disk('s3')
             ->put(
                 $fileName,
-                fopen($filePath, 'r')
+                File::get($filePath),
             );
 
         return Command::SUCCESS;
