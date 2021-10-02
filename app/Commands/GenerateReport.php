@@ -67,7 +67,7 @@ class GenerateReport extends Command
         Storage::disk('s3')
             ->put(
                 $fileName,
-                $filePath
+                fopen($filePath, 'r')
             );
 
         return Command::SUCCESS;

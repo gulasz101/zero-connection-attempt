@@ -32,7 +32,7 @@ class BackupDB extends Command
     {
         Storage::disk('s3')->put(
             Carbon::now()->format(\DateTimeInterface::ATOM) . '.sqlite',
-            database_path('database.sqlite'),
+            fopen(database_path('database.sqlite'), 'r'),
         );
 
         return Command::SUCCESS;
