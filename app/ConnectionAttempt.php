@@ -23,6 +23,8 @@ class ConnectionAttempt extends Model
     protected $guarded = [];
 
     protected $casts = [
+        'time_execution_started' => 'datetime',
+        'time_execution_finished' => 'datetime',
         'status' => ConnectionAttemptStatus::class
     ];
 }
