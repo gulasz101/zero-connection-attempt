@@ -33,7 +33,7 @@ class ConnectAndDump extends Command
      */
     public function handle()
     {
-        $requestUrl = 'https://packagist.org';
+        $requestUrl = env('REQUEST_URL', 'https://www.example.com/');
         $timeStart = Carbon::now();
 
         $connectionAttempt = new ConnectionAttempt();
